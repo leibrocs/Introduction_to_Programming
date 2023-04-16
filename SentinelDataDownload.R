@@ -12,7 +12,7 @@ getwd()
 # setwd("path/to/your/wd")
 
 # define output directory
-dir_out <- "SentinelData/"
+dir_out <- "Data/SentinelData/"
 
 
 
@@ -28,7 +28,7 @@ view_aoi()
 
 # set time range for the scenes
 
-# remark: the data for October 2019 in no longer directly available and provided in the folder 'ClassificationData/SentinelData' 
+# remark: the data for October 2019 in no longer directly available and provided in the folder 'Data/SentinelData' 
 # time_range2019 <- c("2019-10-01", "2019-10-31") 
 
 time_range2022 <- c("2022-12-01", "2022-12-20")
@@ -65,7 +65,7 @@ plot_previews(previews_2022)
 records_2022 <- get_data(records_2022, dir_out = dir_out)
 
 # prepare to unzip the downloaded files
-path_S2 <- paste0(getwd(), "SentinelData/sentinel-2", sep = "")
+path_S2 <- paste0(getwd(), "Data/SentinelData/sentinel-2/", sep = "")
 zipfile <- list.files(path_S2, pattern = ".zip", full.names = T)
 zipfile
 
@@ -73,7 +73,7 @@ zipfile
 unzip(zipfile, exdir = path_S2, overwrite = T)
 
 # transform .jp2 images to .tif files for further analysis
-path_img_20m <- paste0(path_S2, "/S2A_MSIL2A_20221210T140711_N0509_R110_T20KQB_20221210T200157.SAFE/GRANULE/L2A_T20KQB_A039003_20221210T141642/IMG_DATA/R20m/", sep = "")
+path_img_20m <- paste0(path_S2, "S2A_MSIL2A_20221210T140711_N0509_R110_T20KQB_20221210T200157.SAFE/GRANULE/L2A_T20KQB_A039003_20221210T141642/IMG_DATA/R20m/", sep = "")
 
 in.files <- list.files(path_img_20m,"jp2$")[3:6]
 out.files <- gsub(".jp2", ".tif", in.files)
@@ -85,7 +85,7 @@ for(i in 1:length(in.files)){
 }
 
 # load required bands
-B02 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B02_20m.tif"))
-B03 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B03_20m.tif"))
-B04 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B04_20m.tif"))
-B05 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B05_20m.tif"))
+B02 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B02_20m.tif"))
+B03 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B03_20m.tif"))
+B04 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B04_20m.tif"))
+B05 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B05_20m.tif"))
