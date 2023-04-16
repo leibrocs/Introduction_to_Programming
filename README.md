@@ -35,7 +35,7 @@ Next, a trained random forest model was used to classify agriculture as well as 
 |:--:|
 | ***Figure 2** Land cover classification results for the study region in Paraguay for October 2019 and December 2022.* |
 
-For further visualization the area occupied by each land cover class was plotted for the two years in a pie chart:
+For further visualization the area occupied by each land cover class was plotted for the two years using a pie chart:
 
 | ![pieChart](https://user-images.githubusercontent.com/116877154/232326333-eb74b313-3dbb-46d0-b622-46d624d14f40.png) |
 |:--:|
