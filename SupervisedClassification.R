@@ -25,13 +25,9 @@ AOI <- vect("Data/AOI_Extent/AOI.shp")
 
 # load the Sentinel-2 raster layers for 2019 and 2022 and stack the bands
 # crop to the extent of the AOI
-S2_2022_TCI <- rast("Data/SentinelData/S2A_20221210/TCI.tif") %>%
-  terra::crop(AOI)
 S2_2022 <- rast(c("Data/SentinelData/S2A_20221210/B02.tif", "Data/SentinelData/S2A_20221210/B03.tif", "Data/SentinelData/S2A_20221210/B04.tif", "Data/SentinelData/S2A_20221210/B05.tif")) %>%
   terra::crop(AOI)
 
-S2_2019_TCI <- rast("Data/SentinelData/S2A_20191027/TCI.tif") %>%
-  terra::crop(AOI)
 S2_2019 <- rast(c("Data/SentinelData/S2A_20191027/B02.tif", "Data/SentinelData/S2A_20191027/B03.tif", "Data/SentinelData/S2A_20191027/B04.tif", "Data/SentinelData/S2A_20191027/B05.tif")) %>%
   terra::crop(AOI)
 
@@ -51,10 +47,10 @@ names(S2_2022) <- bands
 
 # take a first look at the different bands
 terra::plot(S2_2019)
-terra::plot(S2_2019_TCI) # true color image
+terra::plotRGB(S2_2019, r = 3, g = 2, b = 1) # true color image
 
 terra::plot(S2_2022)
-terra::plot(S2_2022_TCI) # true color image
+terra::plotRGB(S2_2022, r = 3, g = 2, B = 1) # true color image
 
 
 
@@ -100,7 +96,7 @@ ggplot() +
 
 ggplot() +
   geom_spatraster(data = dNDVI, aes(fill = B05)) +
-  scale_fill_gradient2(low = "darkgreen", mid = "blue", high = "red", # green: +vegetation, blue: no change, red: -vegetation(new agricultural fields or decrease in vegetation)
+  scale_fill_gradient2(low = "red", mid = "lightblue", high = "darkgreen", # green: +vegetation, blue: no change, red: -vegetation(new agricultural fields or decrease in vegetation)
                        limits = c(minmax(dNDVI)), midpoint = 0) +
   theme_bw() +
   scale_x_continuous(expand = c(0,0)) +
