@@ -35,6 +35,10 @@ records_2022 <- get_records(time_range2022, products = "Sentinel-2")
 # check availability of records
 records_2022 <- check_availability(records_2022)
 
+# view the available records
+view_records(records_2022)
+view(records_2022)
+
 # filter records for cloud coverage, satellite platform, and product type
 records_2022 <- records_2022[records_2022$cloudcov <= 10 & 
                                records_2022$platform_serial == "Sentinel-2A" & 
