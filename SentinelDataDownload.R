@@ -65,7 +65,7 @@ plot_previews(previews_2022)
 records_2022 <- get_data(records_2022, dir_out = dir_out)
 
 # prepare to unzip the downloaded files
-path_S2 <- paste0(getwd(), "/SentinelData/sentinel-2", sep = "")
+path_S2 <- paste0(getwd(), "SentinelData/sentinel-2", sep = "")
 zipfile <- list.files(path_S2, pattern = ".zip", full.names = T)
 zipfile
 
