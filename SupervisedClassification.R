@@ -21,18 +21,18 @@ set.seed(455351) # for reproducibility
 ########## Load and explore the Sentinel-2 Data ##########
 
 # load the extent of the AOI
-AOI <- vect("AOI_Extent/AOI.shp")
+AOI <- vect("Data/AOI_Extent/AOI.shp")
 
 # load the Sentinel-2 raster layers for 2019 and 2022 and stack the bands
 # crop to the extent of the AOI
-S2_2022_TCI <- rast("SentinelData/S2A_20221210/TCI.tif") %>%
+S2_2022_TCI <- rast("Data/SentinelData/S2A_20221210/TCI.tif") %>%
   terra::crop(AOI)
-S2_2022 <- rast(c("SentinelData/S2A_20221210/B02.tif", "SentinelData/S2A_20221210/B03.tif", "SentinelData/S2A_20221210/B04.tif", "SentinelData/S2A_20221210/B05.tif")) %>%
+S2_2022 <- rast(c("Data/SentinelData/S2A_20221210/B02.tif", "Data/SentinelData/S2A_20221210/B03.tif", "Data/SentinelData/S2A_20221210/B04.tif", "Data/SentinelData/S2A_20221210/B05.tif")) %>%
   terra::crop(AOI)
 
-S2_2019_TCI <- rast("SentinelData/S2A_20191027/TCI.tif") %>%
+S2_2019_TCI <- rast("Data/SentinelData/S2A_20191027/TCI.tif") %>%
   terra::crop(AOI)
-S2_2019 <- rast(c("SentinelData/S2A_20191027/B02.tif", "SentinelData/S2A_20191027/B03.tif", "SentinelData/S2A_20191027/B04.tif", "SentinelData/S2A_20191027/B05.tif")) %>%
+S2_2019 <- rast(c("Data/SentinelData/S2A_20191027/B02.tif", "Data/SentinelData/S2A_20191027/B03.tif", "Data/SentinelData/S2A_20191027/B04.tif", "Data/SentinelData/S2A_20191027/B05.tif")) %>%
   terra::crop(AOI)
 
 # show basic information about the image objects
@@ -114,13 +114,13 @@ ndvi_2022_stretch <- floor((ndvi_2022 + 1) * 128)
 dNDVI_stretch <- floor((dNDVI + 1) * 128)
 
 # save the NDVI and dNDVI rasters
-writeRaster(ndvi_2019_stretch, filename = "ndvi_2019_stretch.tif", datatype = "FLT4S", overwrite = T)
-writeRaster(ndvi_2022_stretch, filename = "ndvi_2022_stretch.tif", datatype = "FLT4S", overwrite = T)
-writeRaster(dNDVI_stretch, filename = "dndvi_stretch.tif", datatype = "FLT4S", overwrite = T)
+writeRaster(ndvi_2019_stretch, filename = "Data/ndvi_2019_stretch.tif", datatype = "FLT4S", overwrite = T)
+writeRaster(ndvi_2022_stretch, filename = "Data/ndvi_2022_stretch.tif", datatype = "FLT4S", overwrite = T)
+writeRaster(dNDVI_stretch, filename = "Data/dndvi_stretch.tif", datatype = "FLT4S", overwrite = T)
 
 # create a false color image for a first visualization of the land cover change
 # reddish colors indicating cropland expansion, blue areas stayed the same, and yellowish areas gained vegetation
-falseColor <- rast(c("ndvi_2019_stretch.tif", "ndvi_2022_stretch.tif", "dndvi_stretch.tif"))
+falseColor <- rast(c("Data/ndvi_2019_stretch.tif", "Data/ndvi_2022_stretch.tif", "Data/dndvi_stretch.tif"))
 
 terra::plotRGB(falseColor, r = 1, g = 2, b = 3, stretch = 'lin')
 
@@ -129,7 +129,7 @@ terra::plotRGB(falseColor, r = 1, g = 2, b = 3, stretch = 'lin')
 ########## Training Samples ##########
 
 # download training samples
-training_samples <- "TrainingData/TrainingSamples.gpkg"
+training_samples <- "Data/TrainingData/TrainingSamples.gpkg"
 labeled_poly <- sf::st_read(training_samples)
 
 # remove last two rows with NA values
@@ -297,8 +297,8 @@ lc_pie_2022 <- ggplot(lc_class2022_df, aes(x = "", y = Area, fill = Classes)) +
 grid.arrange(lc_pie_2019, lc_pie_2022, ncol = 2)
 
 # write and save raster with land cover classification results
-writeRaster(lc_class_2019, filename = "S2_20191027_AOI_LC.tif", datatype = "INT1U", overwrite = T)
-writeRaster(lc_class_2022, filename = "S2_20221210_AOI_LC.tif", datatype = "INT1U", overwrite = T)
+writeRaster(lc_class_2019, filename = "Data/S2_20191027_AOI_LC.tif", datatype = "INT1U", overwrite = T)
+writeRaster(lc_class_2022, filename = "Data/S2_20221210_AOI_LC.tif", datatype = "INT1U", overwrite = T)
 
 # subtract the two classification rasters to get the land cover change
 lc_change <- lc_class_2022 - lc_class_2019
