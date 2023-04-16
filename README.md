@@ -23,4 +23,26 @@ This script was used for to conduct a supervised classification of the two Senti
 Besides the actual analysis, I found an interesting dataset containing various information about the percentage of global forest area and net forest conversion, as well as causes for deforestation in Brazil. I used it to practice my data visualization skills using ggplot2 and included it here as a nice addition of information. Additionally, the data set also stores infromation about the global use of soybeans, which was filtered for Paraguay and serves as a nice addition to the main analysis.
 
 ## Results
+First, a false color images was used for a quick visualization of the land cover change. The methodical approach is a combination of Image Differencing and Multi Temporal Stacking using NDVI. This way the change is coded by color and the color depends on NDVI intensity in both time stamps (Figure 1).
 
+| ![falseColorNDVI](https://user-images.githubusercontent.com/116877154/232325367-0825ddb0-d269-4f53-b3b8-cc790ff1133e.png) |
+|:--:|
+| ***Figure1** False color image used for a first visualization of the land cover change in the study region. Reddish colors indicate vegetation loss, yellowish colors vegetation gain. Blue refers to no change.* 
+
+Next, a trained random forest model was used to classify agriculture as well as natural vegetation in the two Sentinel-2 scenes. Performance analysis for both classifications yielded and overall accuracy of 100%. The two classification results can be seen in the Figure below:
+
+| ![LC_19-22](https://user-images.githubusercontent.com/116877154/232326113-5b348110-c2b3-4257-a798-b8e3ac44290f.png) |
+|:--:|
+| ***Figure 2** Land cover classification results for the study region in Paraguay for October 2019 and December 2022.* |
+
+For further visualization the area occupied by each land cover class was plotted for the two years in a pie chart:
+
+| ![pieChart](https://user-images.githubusercontent.com/116877154/232326333-eb74b313-3dbb-46d0-b622-46d624d14f40.png) |
+|:--:|
+| ***Figure 3** Area of each land cover class in ha for the years 2019 and 2022.* |
+
+The last step was to map and quatify the land cover change in the study region between the two time stamps. The results of the analysis suggest, that the study region experienced significant expansion of of cropland and therefore a loss of natural vegetation (Figure 4). Due to this change detection the area of natural vegetation lost to agriculture is around 115 km2.
+
+| ![lcChange](https://user-images.githubusercontent.com/116877154/232326656-653f3e0c-21dc-4143-9e3b-8ce9574f1757.png) |
+|:--:|
+| ***Figure 4** Map of the land cover change in the study region, which directly refers to increases in cultivated land (red).* |
