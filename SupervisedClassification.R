@@ -114,13 +114,13 @@ ndvi_2022_stretch <- floor((ndvi_2022 + 1) * 128)
 dNDVI_stretch <- floor((dNDVI + 1) * 128)
 
 # save the NDVI and dNDVI rasters
-writeRaster(ndvi_2019_stretch, filename = "NDVI/ndvi_2019_stretch.tif", datatype = "FLT4S", overwrite = T)
-writeRaster(ndvi_2022_stretch, filename = "NDVI/ndvi_2022_stretch.tif", datatype = "FLT4S", overwrite = T)
-writeRaster(dNDVI_stretch, filename = "dNDVI/dndvi_stretch.tif", datatype = "FLT4S", overwrite = T)
+writeRaster(ndvi_2019_stretch, filename = "ndvi_2019_stretch.tif", datatype = "FLT4S", overwrite = T)
+writeRaster(ndvi_2022_stretch, filename = "ndvi_2022_stretch.tif", datatype = "FLT4S", overwrite = T)
+writeRaster(dNDVI_stretch, filename = "dndvi_stretch.tif", datatype = "FLT4S", overwrite = T)
 
 # create a false color image for a first visualization of the land cover change
 # reddish colors indicating cropland expansion, blue areas stayed the same, and yellowish areas gained vegetation
-falseColor <- rast(c("NDVI/ndvi_2019_stretch.tif", "NDVI/ndvi_2022_stretch.tif", "dNDVI/dndvi_stretch.tif"))
+falseColor <- rast(c("ndvi_2019_stretch.tif", "ndvi_2022_stretch.tif", "dndvi_stretch.tif"))
 
 terra::plotRGB(falseColor, r = 1, g = 2, b = 3, stretch = 'lin')
 
@@ -297,8 +297,8 @@ lc_pie_2022 <- ggplot(lc_class2022_df, aes(x = "", y = Area, fill = Classes)) +
 grid.arrange(lc_pie_2019, lc_pie_2022, ncol = 2)
 
 # write and save raster with land cover classification results
-writeRaster(lc_class_2019, filename = "Results/S2_20191027_AOI_LULC.tif", datatype = "INT1U", overwrite = T)
-writeRaster(lc_class_2022, filename = "Results/S2_20221210_AOI_LULC.tif", datatype = "INT1U", overwrite = T)
+writeRaster(lc_class_2019, filename = "S2_20191027_AOI_LC.tif", datatype = "INT1U", overwrite = T)
+writeRaster(lc_class_2022, filename = "S2_20221210_AOI_LC.tif", datatype = "INT1U", overwrite = T)
 
 # subtract the two classification rasters to get the land cover change
 lc_change <- lc_class_2022 - lc_class_2019
