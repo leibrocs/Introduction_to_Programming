@@ -65,7 +65,7 @@ plot_previews(previews_2022)
 records_2022 <- get_data(records_2022, dir_out = dir_out)
 
 # prepare to unzip the downloaded files
-path_S2 <- paste0(getwd(), "Data/SentinelData/sentinel-2/", sep = "")
+path_S2 <- paste0(getwd(), "/Data/SentinelData/sentinel-2/", sep = "")
 zipfile <- list.files(path_S2, pattern = ".zip", full.names = T)
 zipfile
 
@@ -83,9 +83,3 @@ for(i in 1:length(in.files)){
                      file.path(path_S2, out.files[i], sep = ""), 
                      overwrite = TRUE)
 }
-
-# load required bands
-B02 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B02_20m.tif"))
-B03 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B03_20m.tif"))
-B04 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B04_20m.tif"))
-B05 <- rast(paste0(path_S2, "T20KQB_20221210T140711_B05_20m.tif"))
