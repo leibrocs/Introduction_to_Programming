@@ -13,6 +13,7 @@ getwd()
 
 
 ########## Preparations for downloading the Data ##########
+
 # define output directory
 dir_out <- "SentinelData/"
 
