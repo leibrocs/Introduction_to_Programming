@@ -41,7 +41,7 @@ For further visualization the area occupied by each land cover class was plotted
 |:--:|
 | ***Figure 3** Area of each land cover class in ha for the years 2019 and 2022.* |
 
-The last step was to map and quatify the land cover change in the study region between the two time stamps. The results of the analysis suggest, that the study region experienced significant expansion of of cropland and therefore a loss of natural vegetation (Figure 4). Due to this change detection the area of natural vegetation lost to agriculture is around 115 km2.
+The last step was to map and quatify the land cover change in the study region between the two time stamps. The results of the analysis suggest, that the study region experienced significant expansion of cropland and therefore a loss of natural vegetation (Figure 4). Based on the change detection, the amount of natural vegetation area lost to agriculture is estimated to be around 115 km2.
 
 | ![lcChange](https://user-images.githubusercontent.com/116877154/232326656-653f3e0c-21dc-4143-9e3b-8ce9574f1757.png) |
 |:--:|
