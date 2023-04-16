@@ -89,6 +89,3 @@ B02 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B02_20m.tif"))
 B03 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B03_20m.tif"))
 B04 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B04_20m.tif"))
 B05 <- rast(paste0(path_S2, "/T20KQB_20221210T140711_B05_20m.tif"))
-
-# stack bands and save them
-S2_2022 <- rast(c(B02, B03, B04, B05))
