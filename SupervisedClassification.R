@@ -175,7 +175,7 @@ labeled_features_2019 <- cbind(resp_var = labeled_points$resp_var, unlabeled_fea
 labeled_features_2022 <- cbind(resp_var = labeled_points$resp_var, unlabeled_features_2022)
 
 # remove duplicates (in case multiple points fall into the same pixel)
-dupl_2019 <- duplicated(labeled_features_2019) # also length(which(duplicated(labeled_features_2019))) possible ???
+dupl_2019 <- duplicated(labeled_features_2019) 
 dupl_2022 <- duplicated(labeled_features_2022)
 length(which(dupl_2019)) # number of duplicates in labeled_features that need to be removed
 length(which(dupl_2022))
